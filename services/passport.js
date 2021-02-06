@@ -13,6 +13,12 @@ passport.use(
         callbackURL: '/auth/google/callback'
     }, (accessToken, refreshToken, profile, done) => {
         //Create new model instance and then persist it to the db
-        new User({ googleId: profile.id }).save();
+        User.findOne({ googleId: profile.id})
+            .then((existingUser) => {
+                if(!existingUser){
+                    new User({ googleId: profile.id }).save();
+                }
+            })
+
     })
 );
