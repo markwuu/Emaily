@@ -12,4 +12,15 @@ module.exports = (app) => {
     //Passport uses google strategy to send fields to google in exchange for user profile info
     //query params given back: code, scopes
     app.get('/auth/google/callback', passport.authenticate('google'));
-}
+
+    app.get('/api/logout', (req, res) => {
+        //logout function attached to req object by passport
+        //Kills cookie
+        req.logout();
+        res.send(req.user);
+    });
+
+    app.get('/api/current_user', (req, res) => {
+        res.send(req.user);
+    });
+};
