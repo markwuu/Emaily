@@ -7,9 +7,19 @@ const { googleClientID, googleClientSecret } = keys;
 const User = mongoose.model('users');
 
 passport.serializeUser((user, done) => {
+    //Taking mongoose user model instance and
     //setting the cookie as the mongo user id
     done(null, user.id);
-})
+});
+
+passport.deserializeUser((id, done) => {
+    //Taking id from the cookie and
+    //turning it into a mongooser user model instance
+    User.findById(id)
+        .then((user) => {
+            done(null, user);
+        });
+});
 
 passport.use(
     new GoogleStrategy({
