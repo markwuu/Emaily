@@ -25,7 +25,8 @@ passport.use(
     new GoogleStrategy({
         clientID: googleClientID,
         clientSecret: googleClientSecret,
-        callbackURL: '/auth/google/callback'
+        callbackURL: '/auth/google/callback',
+        proxy: true
     }, (accessToken, refreshToken, profile, done) => {
         //Create new model instance and then persist it to the db
         User.findOne({ googleId: profile.id})
