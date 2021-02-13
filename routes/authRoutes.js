@@ -11,7 +11,13 @@ module.exports = (app) => {
     //User is redirected to this URL (set in Google dashboard)
     //Passport uses google strategy to send fields to google in exchange for user profile info
     //query params given back: code, scopes
-    app.get('/auth/google/callback', passport.authenticate('google'));
+    app.get(
+        '/auth/google/callback',
+        passport.authenticate('google'),
+        (req, res) => {
+            res.redirect('/surveys');
+        }
+    );
 
     app.get('/api/logout', (req, res) => {
         //logout function attached to req object by passport
