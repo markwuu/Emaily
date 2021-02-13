@@ -23,7 +23,7 @@ module.exports = (app) => {
         //logout function attached to req object by passport
         //Kills cookie
         req.logout();
-        res.send(req.user);
+        res.redirect('/');
     });
 
     app.get('/api/current_user', (req, res) => {
