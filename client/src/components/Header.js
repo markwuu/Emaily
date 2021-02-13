@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Header = (props) => {
     const renderContent = () => {
@@ -7,25 +8,26 @@ const Header = (props) => {
             case null:
                 return;
             case false:
-                return (
-                    <li><a href="/auth/google">Login With Google</a></li>
-                );
+                return <li><a href="/auth/google">Login With Google</a></li>;
             default:
-                return (
-                    <li><a href="/api/logout">Logout</a></li>
-                );
+                return <li><a href="/api/logout">Logout</a></li>;
         }
     }
 
     return (
         <nav>
             <div className="nav-wrapper">
-            <a href="/" className="left brand-logo">Emaily</a>
-            <ul className="right">
-                <li>
-                    {renderContent()}
-                </li>
-            </ul>
+                <Link
+                    to={props.auth ? '/surveys' : '/'}
+                    className="left brand-logo"
+                >
+                    Emaily
+                </Link>
+                <ul className="right">
+                    <li>
+                        {renderContent()}
+                    </li>
+                </ul>
             </div>
         </nav>
     )
