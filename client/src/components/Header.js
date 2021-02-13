@@ -24,9 +24,7 @@ const Header = (props) => {
                     Emaily
                 </Link>
                 <ul className="right">
-                    <li>
-                        {renderContent()}
-                    </li>
+                    {renderContent()}
                 </ul>
             </div>
         </nav>
