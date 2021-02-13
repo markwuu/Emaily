@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const Header = () => {
+const Header = (props) => {
+    console.log('props', props);
     return (
         <nav>
             <div className="nav-wrapper">
@@ -15,4 +17,8 @@ const Header = () => {
     )
 }
 
-export default Header;
+function mapStateToProps({ auth }) {
+    return { auth };
+}
+
+export default connect(mapStateToProps)(Header);
