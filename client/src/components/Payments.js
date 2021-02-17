@@ -10,7 +10,7 @@ const Payments = (props) => {
             description="$5 for 5 email credits"
             amount={500}
             token={token => props.handleToken(token)}
-            stripeKey={process.env.REACT_APP_STRIPE_KEY}
+            stripeKey={process.env.STRIPE_PUBLISHABLE_KEY}
         >
             <button className="btn">
                 Add Credits
