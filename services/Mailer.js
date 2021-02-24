@@ -1,29 +1,38 @@
 const sgMail = require("@sendgrid/mail");
 const keys = require('../config/keys');
 const { sendGridKey } = keys;
+const surveyTemplate = require('../services/emailTemplates/surveyTemplates');
 
 sgMail.setApiKey(sendGridKey);
 
-const msg = {
-    to: "markwuu@gmail.com",
-    from: "markwuu@gmail.com",
-    subject: "Sending with Twilio SendGrid is Fun",
-    text: "and easy to do anywhere, even with Node.js",
-    html: "<strong>and easy to do anywhere, even with Node.js</strong>",
-    trackingSettings: {
-        "clickTracking": {
-            "enable": true
+// const msg = {
+//     to: "markwuu@gmail.com",
+//     from: "markwuu@gmail.com",
+//     subject: "subject portion",
+//     text: "text portion",
+//     html: surveyTemplate(),
+//     trackingSettings: {
+//         "clickTracking": {
+//             "enable": true
+//         },
+//     },
+// };
+
+const sendMail = async (subject, body, recipients) => {
+
+    const msg = {
+        to: recipients,
+        from: "markwuu@gmail.com",
+        subject: subject,
+        text: subject,
+        html: surveyTemplate(body),
+        trackingSettings: {
+            "clickTracking": {
+                "enable": true
+            },
         },
-    },
-};
+    }
 
-const formatAddresses = (recipients) => {
-    return recipients.map(({ email }) => {
-         return email;
-    })
-}
-
-const sendMail = () => {
     sgMail
         .send(msg)
         .then(() => {}, error => {
@@ -35,9 +44,4 @@ const sendMail = () => {
         });
 }
 
-const addRecipients = (recipients) => {
-    return recipients.forEach(recipient => {
-
-    });
-}
-
+module.exports = sendMail;

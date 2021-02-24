@@ -1,14 +1,17 @@
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
-const Mailer = require('../services/Mailer');
-const surveyTemplate = require('../services/emailTemplates/surveyTemplates');
+const sendMail = require('../services/Mailer');
 
 const Survey = mongoose.model('surveys');
 
 module.exports = (app) => {
-    app.post('/api/surveys', requireLogin, requireCredits, (req, res) => {
+    app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
         const { title, subject, body, recipients } = req.body;
+        console.log('title', title);
+        console.log('subject', subject);
+        console.log('body', body);
+        console.log('recipients', recipients);
 
         const survey = new Survey({
             title,
@@ -19,9 +22,21 @@ module.exports = (app) => {
             dateSent: Date.now()
         });
 
-        console.log('survey: ', survey);
+        console.log('survey', survey);
 
-        //Great place to send an email
-        // const mailer = new Mailer(survey, surveyTemplate(survey));
+        //1. Send email
+        await sendMail(subject, body, recipients.split(',').map(email => ({ email: email.trim() })));
+
+        //2. Save survey
+        // await survey.save();
+
+        //3. Remove credits from user
+        // req.user.credits -= 1;
+
+        //4. Resave user;
+        // const user = await req.user.save();
+
+        //5. Send back updated user model
+        // res.send(user);
     });
 };
