@@ -5,7 +5,9 @@ const surveyTemplate = require('../services/emailTemplates/surveyTemplates');
 
 sgMail.setApiKey(sendGridKey);
 
-const sendMail = async (subject, body, recipients) => {
+const sendMail = async (survey) => {
+
+    const { recipients, subject, body } = survey;
 
     const msg = {
         to: recipients,
