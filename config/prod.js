@@ -7,5 +7,6 @@ module.exports = {
     stripePublishableKey: process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY,
     stripeSecretKey: process.env.STRIPE_SECRET_KEY,
     sendGridKey: process.env.SEND_GRID_KEY,
-    fromEmail: process.env.FROM_EMAIL
+    fromEmail: process.env.FROM_EMAIL,
+    redirectDomain: process.env.REDIRECT_DOMAIN
 };
