@@ -5,19 +5,6 @@ const surveyTemplate = require('../services/emailTemplates/surveyTemplates');
 
 sgMail.setApiKey(sendGridKey);
 
-// const msg = {
-//     to: "markwuu@gmail.com",
-//     from: "markwuu@gmail.com",
-//     subject: "subject portion",
-//     text: "text portion",
-//     html: surveyTemplate(),
-//     trackingSettings: {
-//         "clickTracking": {
-//             "enable": true
-//         },
-//     },
-// };
-
 const sendMail = async (subject, body, recipients) => {
 
     const msg = {

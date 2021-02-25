@@ -28,7 +28,7 @@ module.exports = (app) => {
         await sendMail(subject, body, recipients.split(',').map(email => ({ email: email.trim() })));
 
         //2. Save survey
-        // await survey.save();
+        await survey.save();
 
         //3. Remove credits from user
         // req.user.credits -= 1;
