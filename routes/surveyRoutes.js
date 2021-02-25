@@ -18,21 +18,19 @@ module.exports = (app) => {
             dateSent: Date.now()
         });
 
-        console.log('survey', survey);
-
-        //1. Send email
-        await sendMail(survey);
-
-        //2. Save survey
-        await survey.save();
-
-        //3. Remove credits from user
-        req.user.credits -= 1;
-
-        //4. Resave user;
-        const user = await req.user.save();
-
-        //5. Send back updated user model
-        res.send(user);
+        try {
+            //1. Send email
+            await sendMail(survey);
+            //2. Save survey
+            await survey.save();
+            //3. Remove credits from user
+            req.user.credits -= 1;
+            //4. Resave user;
+            const user = await req.user.save();
+            //5. Send back updated user model
+            res.send(user);
+        } catch (err){
+            res.status(422).send(err);
+        }
     });
 };
