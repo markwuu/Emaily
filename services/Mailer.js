@@ -1,6 +1,6 @@
 const sgMail = require("@sendgrid/mail");
 const keys = require('../config/keys');
-const { sendGridKey } = keys;
+const { sendGridKey, fromEmail } = keys;
 const surveyTemplate = require('../services/emailTemplates/surveyTemplates');
 
 sgMail.setApiKey(sendGridKey);
@@ -11,7 +11,7 @@ const sendMail = async (survey) => {
 
     const msg = {
         to: recipients,
-        from: "markwuu@gmail.com",
+        from: fromEmail,
         subject: subject,
         text: subject,
         html: surveyTemplate(body),
