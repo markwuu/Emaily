@@ -10,10 +10,33 @@ const onSubmit = async values => {
     console.log(JSON.stringify(values, 0, 2));
 }
 
-const renderFields = (title) => {
+const renderFields = (label) => {
     return (
         <div>
-            <Field type="text" name="title" component={SurveyField}/>
+            <Field
+                label="Survey Title"
+                type="text"
+                name="title"
+                component={SurveyField}
+            />
+            <Field
+                label="Survey Line"
+                type="text"
+                name="subject"
+                component={SurveyField}
+            />
+            <Field
+                label="Email Body"
+                type="text"
+                name="body"
+                component={SurveyField}
+            />
+            <Field
+                label="Recipient List"
+                type="text"
+                name="emails"
+                component={SurveyField}
+            />
         </div>
     )
 }
@@ -26,7 +49,6 @@ const SurveyForm = () => {
             render={({ handleSubmit, form, submitting, pristine, values }) => (
                 <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Survey Title</label>
                     {renderFields()}
                 </div>
                 <div className="buttons">
