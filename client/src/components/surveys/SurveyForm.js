@@ -7,7 +7,6 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 const onSubmit = async values => {
     await sleep(300)
-    // window.alert(JSON.stringify(values, 0, 2))
     console.log(JSON.stringify(values, 0, 2));
 }
 
@@ -19,8 +18,7 @@ const renderFields = (title) => {
     )
 }
 
-const SurveyForm = (props) => {
-    const { handleSubmit, pristine, reset, submitting } = props;
+const SurveyForm = () => {
     return (
         <div>
         <Form

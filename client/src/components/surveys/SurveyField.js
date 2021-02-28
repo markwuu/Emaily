@@ -2,12 +2,12 @@
 // label and text input
 import React from 'react';
 
-const SurveyField = (props) => {
+const SurveyField = ({input}) => {
+    // console.log('inputf', input);
 
-    const { title } = props;
     return (
         <div>
-            Survey Field
+            <input {...input} />
         </div>
     )
 }
