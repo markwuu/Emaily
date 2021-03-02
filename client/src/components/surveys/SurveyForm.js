@@ -10,33 +10,21 @@ const onSubmit = async values => {
     console.log(JSON.stringify(values, 0, 2));
 }
 
+const FIELDS = [
+    { label: 'Survey Title', name: 'title' },
+    { label: 'Survey Line', name: 'subject' },
+    { label: 'Email Body', name: 'body' },
+    { label: 'Recipient List', name: 'emails' },
+]
+
 const renderFields = (label) => {
     return (
         <div>
-            <Field
-                label="Survey Title"
-                type="text"
-                name="title"
-                component={SurveyField}
-            />
-            <Field
-                label="Survey Line"
-                type="text"
-                name="subject"
-                component={SurveyField}
-            />
-            <Field
-                label="Email Body"
-                type="text"
-                name="body"
-                component={SurveyField}
-            />
-            <Field
-                label="Recipient List"
-                type="text"
-                name="emails"
-                component={SurveyField}
-            />
+            {FIELDS.map(({label, name}) => {
+                return (
+                    <Field component={SurveyField} type="text" label={label} name={name} key={name}/>
+                );
+            })}
         </div>
     )
 }
