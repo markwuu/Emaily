@@ -40,8 +40,9 @@ const SurveyForm = () => {
                     {renderFields()}
                 </div>
                 <div className="buttons">
-                    <button type="submit" disabled={submitting || pristine}>
-                        Submit
+                    <button className="teal btn-flat right white-text" type="submit" disabled={submitting || pristine}>
+                        Next
+                        <i className="material-icons right">done</i>
                     </button>
                     <button
                         type="button"
