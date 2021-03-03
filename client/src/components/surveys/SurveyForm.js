@@ -23,7 +23,22 @@ const renderFields = (label) => {
         <div>
             {FIELDS.map(({label, name}) => {
                 return (
-                    <Field component={SurveyField} type="text" label={label} name={name} key={name}/>
+                    <Field type="text" label={label} name={name} key={name}>
+                        {({input, meta}) => {
+                            console.log('meta1', meta);
+                            return (
+                                <div>
+                                    <div>
+                                        <label>{label}</label>
+                                        <input {...input} type="text"/>
+                                    </div>
+                                    <div className="error">
+                                        {meta.error && meta.touched && <span>{meta.error}</span>}
+                                    </div>
+                                </div>
+                            )
+                        }}
+                    </Field>
                 );
             })}
         </div>
@@ -35,6 +50,14 @@ const SurveyForm = () => {
         <div>
         <Form
             onSubmit={onSubmit}
+            validate={values => {
+                const errors = {};
+                if(!values.title){
+                    errors.title = 'Please add a title';
+                }
+
+                return errors;
+            }}
             render={({ handleSubmit, form, submitting, pristine, values }) => (
                 <form onSubmit={handleSubmit}>
                 <div>
