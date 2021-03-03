@@ -1,6 +1,7 @@
 //SurveyForm shows a form for a user to add input
 import React from 'react';
-import { Form, Field } from 'react-final-form'
+import { Form, Field } from 'react-final-form';
+import { Link } from 'react-router-dom';
 import SurveyField from './SurveyField';
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
@@ -44,13 +45,9 @@ const SurveyForm = () => {
                         Next
                         <i className="material-icons right">done</i>
                     </button>
-                    <button
-                        type="button"
-                        onClick={form.reset}
-                        disabled={submitting || pristine}
-                    >
-                        Reset
-                    </button>
+                    <Link to="/surveys" className="red btn-flat white-text">
+                        Cancel
+                    </Link>
                 </div>
                 </form>
             )}
