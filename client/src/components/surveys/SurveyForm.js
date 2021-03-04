@@ -3,6 +3,7 @@ import React from 'react';
 import { Form, Field } from 'react-final-form';
 import { Link } from 'react-router-dom';
 import SurveyField from './SurveyField';
+import validateEmails from '../../utils/validateEmails';
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -25,14 +26,13 @@ const renderFields = (label) => {
                 return (
                     <Field type="text" label={label} name={name} key={name}>
                         {({input, meta}) => {
-                            console.log('meta1', meta);
                             return (
                                 <div>
                                     <div>
                                         <label>{label}</label>
-                                        <input {...input} type="text"/>
+                                        <input {...input} type="text" style={{ marginBottom: '5px'}}/>
                                     </div>
-                                    <div className="error">
+                                    <div className="red-text" style={{ marginBottom: '20px' }}>
                                         {meta.error && meta.touched && <span>{meta.error}</span>}
                                     </div>
                                 </div>
@@ -52,9 +52,14 @@ const SurveyForm = () => {
             onSubmit={onSubmit}
             validate={values => {
                 const errors = {};
-                if(!values.title){
-                    errors.title = 'Please add a title';
-                }
+
+                FIELDS.forEach(({name}) => {
+                    if(!values[name]) {
+                        errors[name] = `You must provide a ${name}`;
+                    }
+                })
+
+                errors.emails = validateEmails(values.emails || '');
 
                 return errors;
             }}
