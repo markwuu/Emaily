@@ -45,11 +45,11 @@ const renderFields = (label) => {
     )
 }
 
-const SurveyForm = () => {
+const SurveyForm = (props) => {
     return (
         <div>
         <Form
-            onSubmit={onSubmit}
+            onSubmit={props.onSurveySubmit}
             validate={values => {
                 const errors = {};
 
