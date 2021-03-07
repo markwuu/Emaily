@@ -70,7 +70,7 @@ const SurveyForm = (props) => {
                     {renderFields()}
                 </div>
                 <div className="buttons">
-                    <button className="teal btn-flat right white-text" type="submit" disabled={submitting || pristine} onClick={() => props.setSurveyFormData(values)}>
+                    <button className="teal btn-flat right white-text" type="submit" onClick={() => props.setSurveyFormData(values)}>
                         Next
                         <i className="material-icons right">done</i>
                     </button>
