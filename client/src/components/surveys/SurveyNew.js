@@ -8,7 +8,7 @@ const SurveyNew = () => {
 
     const renderContent = () => {
         if(showFormReview){
-            return <SurveyFormReview/>
+            return <SurveyFormReview onCancel={() => {setShowFormReview(false)}}/>
         }
 
         return <SurveyForm onSurveySubmit={() => {setShowFormReview(true)}}/>
