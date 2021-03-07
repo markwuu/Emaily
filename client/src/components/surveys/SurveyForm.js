@@ -2,7 +2,6 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
 import { Link } from 'react-router-dom';
-import SurveyField from './SurveyField';
 import validateEmails from '../../utils/validateEmails';
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
@@ -46,10 +45,12 @@ const renderFields = (label) => {
 }
 
 const SurveyForm = (props) => {
+    console.log('props', props);
     return (
         <div>
         <Form
             onSubmit={props.onSurveySubmit}
+            initialValues={props.surveyFormData}
             validate={values => {
                 const errors = {};
 
@@ -69,7 +70,7 @@ const SurveyForm = (props) => {
                     {renderFields()}
                 </div>
                 <div className="buttons">
-                    <button className="teal btn-flat right white-text" type="submit" disabled={submitting || pristine}>
+                    <button className="teal btn-flat right white-text" type="submit" disabled={submitting || pristine} onClick={() => props.setSurveyFormData(values)}>
                         Next
                         <i className="material-icons right">done</i>
                     </button>
