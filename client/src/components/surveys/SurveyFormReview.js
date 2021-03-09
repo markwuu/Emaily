@@ -3,12 +3,12 @@ import React from 'react';
 import formFields from './formFields';
 
 const SurveyFormReview = ({onCancel, surveyFormData}) => {
-    const reviewFields = formFields.map((field)=> {
+    const reviewFields = formFields.map(({name, label}, i)=> {
         return (
-            <div>
-                <label>{field.label}</label>
+            <div key={i}>
+                <label>{label}</label>
                 <div>
-                    {surveyFormData[field.name]}
+                    {surveyFormData[name]}
                 </div>
             </div>
         )
