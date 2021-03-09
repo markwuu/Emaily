@@ -3,6 +3,7 @@ import React from 'react';
 import { Form, Field } from 'react-final-form';
 import { Link } from 'react-router-dom';
 import validateEmails from '../../utils/validateEmails';
+import formFields from './formFields';
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -11,17 +12,10 @@ const onSubmit = async values => {
     console.log(JSON.stringify(values, 0, 2));
 }
 
-const FIELDS = [
-    { label: 'Survey Title', name: 'title' },
-    { label: 'Survey Line', name: 'subject' },
-    { label: 'Email Body', name: 'body' },
-    { label: 'Recipient List', name: 'emails' },
-]
-
 const renderFields = (label) => {
     return (
         <div>
-            {FIELDS.map(({label, name}) => {
+            {formFields.map(({label, name}) => {
                 return (
                     <Field type="text" label={label} name={name} key={name}>
                         {({input, meta}) => {
@@ -45,7 +39,6 @@ const renderFields = (label) => {
 }
 
 const SurveyForm = (props) => {
-    console.log('props', props);
     return (
         <div>
         <Form
@@ -54,7 +47,7 @@ const SurveyForm = (props) => {
             validate={values => {
                 const errors = {};
 
-                FIELDS.forEach(({name}) => {
+                formFields.forEach(({name}) => {
                     if(!values[name]) {
                         errors[name] = `You must provide a ${name}`;
                     }

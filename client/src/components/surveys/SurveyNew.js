@@ -9,14 +9,19 @@ const SurveyNew = () => {
 
     const renderContent = () => {
         if(showFormReview){
-            return <SurveyFormReview onCancel={() => {setShowFormReview(false)}}/>
+            return (
+                <SurveyFormReview
+                    surveyFormData={surveyFormData}
+                    onCancel={() => {setShowFormReview(false)}}
+                />
+            );
         }
 
         return (
             <SurveyForm
-                    surveyFormData={surveyFormData}
-                    setSurveyFormData={setSurveyFormData}
-                    onSurveySubmit={() => {setShowFormReview(true)}}
+                surveyFormData={surveyFormData}
+                setSurveyFormData={setSurveyFormData}
+                onSurveySubmit={() => {setShowFormReview(true)}}
             />
         );
     }
