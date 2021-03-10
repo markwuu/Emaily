@@ -2,10 +2,24 @@
 import React, { useState } from 'react';
 import SurveyForm from './SurveyForm';
 import SurveyFormReview from './SurveyFormReview';
+import axios from 'axios';
 
 const SurveyNew = () => {
     const [showFormReview, setShowFormReview] = useState(false);
     const [surveyFormData, setSurveyFormData] = useState({title: '', subject: '', body: '', emails: ''});
+
+    const submitSurvey = (values) => {
+        axios.post({
+            method: 'post',
+            url: '/api/surveys',
+            data: {
+              title: 'Finn',
+              subject: 'Williams',
+              body: 'body',
+              recipients: 'markwuu@gmail.com,ashleymurayama@gmail.com'
+            }
+        });
+    }
 
     const renderContent = () => {
         if(showFormReview){
@@ -13,6 +27,7 @@ const SurveyNew = () => {
                 <SurveyFormReview
                     surveyFormData={surveyFormData}
                     onCancel={() => {setShowFormReview(false)}}
+                    submitSurvey={() => {submitSurvey()}}
                 />
             );
         }
