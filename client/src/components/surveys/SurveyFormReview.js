@@ -1,8 +1,6 @@
 //SurveyFormReview shows users their form inputs for review
 import React from 'react';
 import formFields from './formFields';
-import { connect } from 'react-redux';
-import * as actions from '../../actions';
 
 const SurveyFormReview = ({onCancel, surveyFormData, submitSurvey}) => {
     const reviewFields = formFields.map(({name, label}, i)=> {

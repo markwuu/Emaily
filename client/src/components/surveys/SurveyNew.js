@@ -3,14 +3,21 @@ import React, { useState } from 'react';
 import SurveyForm from './SurveyForm';
 import SurveyFormReview from './SurveyFormReview';
 import axios from 'axios';
+import { withRouter } from "react-router";
 
-const SurveyNew = () => {
+const SurveyNew = ({history}) => {
+    console.log('history', history);
     const [showFormReview, setShowFormReview] = useState(false);
     const [surveyFormData, setSurveyFormData] = useState({title: '', subject: '', body: '', emails: ''});
 
     const submitSurvey = (values) => {
         console.log('sanity check', values);
-        axios.post('/api/surveys', values);
+        axios
+            .post('/api/surveys', values)
+            .then(() => {
+                console.log('sanity check');
+                history.push("/surveys")
+            });
     }
 
     const renderContent = () => {
@@ -40,4 +47,4 @@ const SurveyNew = () => {
     )
 }
 
-export default SurveyNew;
+export default withRouter(SurveyNew);
