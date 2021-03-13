@@ -27,7 +27,7 @@ const SurveyFormReview = ({onCancel, surveyFormData, submitSurvey}) => {
                 Back
             </button>
             <button
-                onClick={() => submitSurvey()}
+                onClick={() => submitSurvey(surveyFormData)}
                 className="green white-text btn-flat right"
             >
                 Send Survey
@@ -37,4 +37,4 @@ const SurveyFormReview = ({onCancel, surveyFormData, submitSurvey}) => {
     )
 };
 
-export default connect(null, actions)(SurveyFormReview);
+export default SurveyFormReview;
