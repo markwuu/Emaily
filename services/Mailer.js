@@ -7,14 +7,14 @@ sgMail.setApiKey(sendGridKey);
 
 const sendMail = async (survey) => {
 
-    const { recipients, subject, body } = survey;
+    const { recipients, subject, body, _id } = survey;
 
     const msg = {
         to: recipients,
         from: fromEmail,
         subject: subject,
         text: subject,
-        html: surveyTemplate(body),
+        html: surveyTemplate(survey),
         trackingSettings: {
             "clickTracking": {
                 "enable": true
