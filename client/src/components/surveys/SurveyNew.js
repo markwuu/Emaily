@@ -6,7 +6,6 @@ import axios from 'axios';
 import { withRouter } from "react-router";
 
 const SurveyNew = ({history}) => {
-    console.log('history', history);
     const [showFormReview, setShowFormReview] = useState(false);
     const [surveyFormData, setSurveyFormData] = useState({title: '', subject: '', body: '', emails: ''});
 
