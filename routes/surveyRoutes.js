@@ -9,6 +9,14 @@ const sendMail = require('../services/Mailer');
 const Survey = mongoose.model('surveys');
 
 module.exports = (app) => {
+    app.get('/api/surveys', requireLogin, requireCredits, async (req, res) => {
+        const surveys = await Survey.find({ _user: req.user.id})
+            .select({recipients: false});
+
+        res.send(surveys);
+        console.log('surveys', surveys.length);
+    });
+
     app.get('/api/surveys/:surveyId/:choice', (req, res) => {
         res.send('Thanks for voting!');
     });
