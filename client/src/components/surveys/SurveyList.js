@@ -10,7 +10,7 @@ const SurveyList = ({fetchSurveys, surveys}) => {
 
     const renderSurveys = () => {
         return (
-            surveys.map(survey => {
+            surveys.reverse().map(survey => {
                 return (
                     <div className="card darken-1" key={survey._id}>
                         <div className="card-content">
